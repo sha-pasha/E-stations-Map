@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-stations Map</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8ba3062f-1f33-4327-9870-30128ece7aaa&lang=ru_RU" type="text/javascript"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main id='app'>
+        <section id="map"></section>
+        <section class="nav">
+            <div id="chart"></div>
+            <div id="findButton" class="find-button">Find the closest station<span id="dist"></span></div>
+            <div class="stations">
+                <ul id="listPages" class="list-pages"></ul>
+                <ul id="listStations" class="list-stations"></ul>
+            </div>
+
+        </section>
+    </main>
+    <!-- <script src="/__/firebase/7.14.4/firebase-app.js"></script>
+    <script src="/__/firebase/7.14.4/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js"></script> -->
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,900;1,300;1,400;1,600;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 3px;
+    background-color: #e0e0da;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e68414;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+}
+
+.nav {
+    width: 300px;
+}
+
+#chart {
+    width: 300px;
+    height: 200px;
+}
+
+.stations {
+    position: relative;
+    width: 300px;
+    font-size: .8em;
+}
+
+.find-button {
+    width: 300px;
+    height: 25px;
+    padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ffed26;
+}
+
+.find-button:hover {
+    background-color: #ffff3c;
+}
+.find-button span{
+    font-size: .8em;
+    font-weight: 700;
+}
+
+.list-pages {
+    width: 300px;
+    height: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    overflow-x: auto;
+    color: #fff;
+}
+
+.list-pages li {
+    width: 100%;
+    padding: 1px 2px;
+    text-align: center;
+    background-color: #444444;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.list-pages li:hover {
+    background-color: #e68414;
+}
+
+.list-stations {
+    height: calc(100vh - 245px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list-stations li {
+    padding: 7px;
+    padding-left: 15px;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.list-stations li:hover {
+    padding-left: 20px;
+    background-color: #ffe600;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}
+
+.info p {
+    margin: 0;
+    line-height: 16px;
+}
+
+.invisible {
+    display: none;
+    height: 0;
+}
