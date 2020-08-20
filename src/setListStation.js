@@ -27,7 +27,8 @@ function renderListStations (page, map) {
  *
  */
 function paginatingList (list, map) {
-  const itemsOnPage = 100;
+  let itemsOnPage = 100;
+  if (list.length > 2000) { itemsOnPage = 500; }
   const pages = Math.ceil(list.length / itemsOnPage);
   const listPages = document.getElementById('listPages');
   listPages.innerText = '';

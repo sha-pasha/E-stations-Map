@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const geoTools = require('../src/geoTools.js');
@@ -7,19 +8,33 @@ const getDataChart = require('../src/getDataChart.js');
 class App {
   constructor () {
     this.map = null;
+    this.clusterer = {};
     this.stations = [];
+    this.countStations = 2000;
+    this.country = 'GB';
   };
 
   async start () {
-    const data = (await axios.get('https://api.openchargemap.io/v3/poi/?output=json&countrycode=GB&maxresults=2000&compact=true&verbose=false')).data;
-    this.stations = data;
-
     ymaps.ready(() => this.initMap());
 
-    const button = document.getElementById('findButton');
-    button.addEventListener('click', () => {
+    const findButton = document.getElementById('findButton');
+    findButton.addEventListener('click', () => {
       geoTools.findClosestStation(this.stations, this.map);
     });
+
+    const butOptions = document.getElementById('butOptions');
+    const setOptions = document.getElementById('setOptions');
+    butOptions.onclick = () => setOptions.classList.toggle('invisible');
+    const inputRange = document.getElementById('inputRange');
+    const rangeValue = document.getElementById('rangeValue');
+    inputRange.onchange = () => rangeValue.innerText = inputRange.value;
+    const selectCountry = document.getElementById('selectCountry');
+    document.getElementById('applyOpions').onclick = () => {
+      this.countStations = inputRange.value;
+      this.country = selectCountry.value;
+      this.loadData();
+      setOptions.classList.toggle('invisible');
+    };
   };
 
   initMap () {
@@ -32,6 +47,32 @@ class App {
     this.map.controls.remove('trafficControl');
     this.map.controls.remove('searchControl');
     this.map.controls.remove('fullscreenControl');
+    this.clusterer = new ymaps.Clusterer({
+      minClusterSize: 3,
+      gridSize: 128,
+      zoomMargin: 40,
+      clusterIcons: [{
+        href: 'images/cluster_icon.png',
+        size: [40, 40],
+        offset: [-20, -20]
+      },
+      {
+        href: 'images/cluster_icon.png',
+        size: [60, 60],
+        offset: [-30, -30]
+      }
+      ],
+      clusterNumbers: [100],
+      clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
+        '<div style="font-size: 1.1em; font-weight: bold;">$[properties.geoObjects.length]</div>')
+    });
+    this.loadData();
+  }
+
+  async loadData () {
+    const data = (await axios.get(`https://api.openchargemap.io/v3/poi/?output=json&countrycode=${this.country}&maxresults=${this.countStations}&compact=true&verbose=false`)).data;
+    this.stations = data;
+    this.map.setCenter([data[0].AddressInfo.Latitude, data[0].AddressInfo.Longitude], 7);
 
     const points = [];
 
@@ -59,29 +100,10 @@ class App {
       points.push(point);
     });
 
-    const clusterer = new ymaps.Clusterer({
-      minClusterSize: 3,
-      gridSize: 128,
-      zoomMargin: 40,
-      clusterIcons: [{
-        href: 'images/cluster_icon.png',
-        size: [40, 40],
-        offset: [-20, -20]
-      },
-      {
-        href: 'images/cluster_icon.png',
-        size: [60, 60],
-        offset: [-30, -30]
-      }
-      ],
-      clusterNumbers: [100],
-      clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
-        '<div style="font-size: 1.1em; font-weight: bold;">$[properties.geoObjects.length]</div>')
-    });
-
-    clusterer.add(points);
-    this.map.geoObjects.add(clusterer);
-    this.map.events.add('boundschange', () => { this.filterVisibleStations(); });
+    this.clusterer.removeAll();
+    this.clusterer.add(points);
+    this.map.geoObjects.add(this.clusterer);
+    this.map.events.add('boundschange', () => this.filterVisibleStations());
 
     this.filterVisibleStations();
   }

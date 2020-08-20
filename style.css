@@ -27,6 +27,8 @@ main {
 
 .nav {
     width: 300px;
+    position: relative;
+    box-shadow: 0px 1px 4px -1px black;
 }
 
 #chart {
@@ -52,9 +54,40 @@ main {
 .find-button:hover {
     background-color: #ffff3c;
 }
-.find-button span{
+
+.find-button span {
     font-size: .8em;
     font-weight: 700;
+}
+
+.options {
+    position: absolute;
+    background-color: white;
+    padding: 4px;
+    font-size: .85em;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15), 0 2px 5px -3px rgba(0, 0, 0, .15);
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.options-but {
+    top: 10px;
+    left: -176px;
+}
+
+.options-set {
+    top: 47px;
+    left: -242px;
+    width: 140px;
+    list-style: none;
+}
+
+#applyOpions {
+    width: 100%;
+    background-color: gold;
+    border: none;
+    cursor: pointer;
 }
 
 .list-pages {
