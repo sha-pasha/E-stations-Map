@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "axios-progress-bar": "^1.2.0",
     "jest": "^26.0.1",
     "jsdoc": "^3.6.4",
     "webpack": "^4.43.0"

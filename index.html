@@ -12,6 +12,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://kit.fontawesome.com/5e9cb1ad3d.js" crossorigin="anonymous"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=8ba3062f-1f33-4327-9870-30128ece7aaa&lang=ru_RU" type="text/javascript"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,17 +23,41 @@
         <section class="nav">
             <div id="chart"></div>
             <div id="findButton" class="find-button">Find the closest station<span id="dist"></span></div>
+
+            <div id="butOptions" class="options options-but">
+                <p><i class="fas fa-cogs"></i> Options</p>
+            </div>
+            <ul id="setOptions" class="options options-set invisible">
+                <li>
+                    <label for="selectCountry">Country:
+                    <select id="selectCountry">
+                        <option>GB</option>
+                        <option>US</option>
+                        <option>RU</option>
+                        <option>BY</option>
+                        <option>IN</option>
+                        <option>HK</option>
+                        <option>DE</option>                    
+                        <option>CN</option>
+                        <option>WORLD</option>
+                    </select>
+                </label>
+                </li>
+                <li>
+                    <label for="inputRange">Statoins: <span id="rangeValue">2000</span></label>
+                    <input type="range" min="200" max="10000" step="100" value="2000" id="inputRange">
+                </li>
+                <li>
+                    <button id="applyOpions">SET</button>
+                </li>
+            </ul>
+
             <div class="stations">
                 <ul id="listPages" class="list-pages"></ul>
                 <ul id="listStations" class="list-stations"></ul>
             </div>
-
         </section>
-    </main>
-    <!-- <script src="/__/firebase/7.14.4/firebase-app.js"></script>
-    <script src="/__/firebase/7.14.4/firebase-analytics.js"></script>
-    <script src="/__/firebase/init.js"></script> -->
-
+    </main>    
     <script src="dist/main.js"></script>
 </body>
 
