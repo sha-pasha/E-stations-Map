@@ -1,6 +1,6 @@
 # E-stations-Map
 
-Ссылка на хостинг
+
 https://epoint-e19c5.firebaseapp.com/
 
 Задание на практикум
