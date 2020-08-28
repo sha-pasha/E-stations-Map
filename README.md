@@ -1,5 +1,4 @@
 # E-stations-Map
-Один из практикумов на курсе.
 
 Ссылка на хостинг
 https://epoint-e19c5.firebaseapp.com/
