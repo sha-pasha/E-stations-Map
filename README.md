@@ -4,6 +4,7 @@
 https://epoint-e19c5.firebaseapp.com/
 
 Задание на практикум
+
 Приложение-карта точек зарядки электромобилей с графиками статистики по точкам и с возможностью поиска ближайшей точки зарядки
 Технологии: карты, загрузка данных из стороннего API, https://openchargemap.org/site/develop/api?ref=public-apis, highcharts, haversine, geolocation API
 
